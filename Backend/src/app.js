@@ -3,7 +3,13 @@ import aiRoutes from "./routes/ai.routes.js";
 import cors from "cors";
 
 const app = express();
-app.use(cors());
+
+// ✅ Secure CORS: only allow your Netlify frontend
+app.use(cors({
+  origin: "https://coderevie.netlify.app",  // your Netlify site
+  methods: ["GET", "POST"],
+  allowedHeaders: ["Content-Type"]
+}));
 
 // Middleware to parse JSON body
 app.use(express.json());
