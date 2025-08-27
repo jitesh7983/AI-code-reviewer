@@ -16,16 +16,16 @@ function App() {
     prism.highlightAll();
   }, [code]);
 
-  async function reviewCode() {
-    try {
-      const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3000";
-      const response = await axios.post(`${API_URL}/ai/get-review`, { code });
-      setReview(response.data.review);
-    } catch (error) {
-      console.error("Error fetching review:", error);
-      setReview("⚠️ Unable to fetch review. Please check your backend connection.");
-    }
+ async function reviewCode() {
+  try {
+    const API_URL = import.meta.env.VITE_API_URL || "https://ai-code-reviewer-2afc.onrender.com";
+    const response = await axios.post(`${API_URL}/ai/get-review`, { code });
+    setReview(response.data.review);
+  } catch (error) {
+    console.error("Error fetching review:", error);
+    setReview("⚠️ Unable to fetch review. Please check your backend connection.");
   }
+}
 
   return (
     <main>
